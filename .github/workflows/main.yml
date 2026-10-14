@@ -1,0 +1,29 @@
+name: Compilar Plugin Ember
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+
+    steps:
+    - name: Descargar codigo del repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar CMake
+      run: cmake -B build -DCMAKE_BUILD_TYPE=Release
+
+    - name: Compilar Plugin
+      run: cmake --build build --config Release
+
+    - name: Guardar Plugins Compilados
+      uses: actions/upload-artifact@v4
+      with:
+        name: Ember-macOS-Build
+        path: |
+          build/Ember_artefacts/Release/VST3/
+          build/Ember_artefacts/Release/AU/
+          build/Ember_artefacts/Release/Standalone/
