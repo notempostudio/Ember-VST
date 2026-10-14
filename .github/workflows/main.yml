@@ -11,7 +11,7 @@ jobs:
 
     steps:
     - name: Descargar codigo del repositorio
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Configurar CMake
       run: cmake -B build -DCMAKE_BUILD_TYPE=Release
@@ -24,6 +24,6 @@ jobs:
       with:
         name: Ember-macOS-Build
         path: |
-          build/Ember_artefacts/Release/VST3/
-          build/Ember_artefacts/Release/AU/
-          build/Ember_artefacts/Release/Standalone/
+          build/Ember_artefacts/Release/
+          build/Ember_artefacts/
+          build/
